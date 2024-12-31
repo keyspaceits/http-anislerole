@@ -1,0 +1,26 @@
+---
+# tasks file for httpd-web
+- name: install httpd
+  yum:
+    name: "{{ httpd_package }}"
+    state: present
+
+- name: Enable and Start the service
+  service:
+    name: "{{ httpd_service }}"
+    state: started
+    enabled: true
+
+- name: clone application repo
+  git:
+    repo: "{{ git_repo }}"
+    dest: "{{ app_dir }}"
+    version: "{{ git_branch }}"
+    force: yes
+
+- name: deploy httpd virtual host configuration
+  template:
+    src: httpd-vhost.j2
+    dest: "{{ httpd_vhost_file }}"
+  notify:
+    - Reload HTTPD

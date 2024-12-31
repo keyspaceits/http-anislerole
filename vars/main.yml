@@ -1,0 +1,16 @@
+---
+# vars file for httpd-web
+httpd_package: httpd
+httpd_service: httpd
+httpd_vhost_dir: /etc/httpd/conf.d   #directory  where virtualhost files are stored
+httpd_vhost_file: "{{ httpd_vhost_dir }}/{{ app_name }}.conf"
+
+git_repo: "https://github.com/keyspaceits/project-html-blue-website.git"
+git_branch: "master"
+app_name: "project-html-blue-website"
+app_dir: "/var/www/{{ app_name }}"
+
+server_admin: "webmaster@example.com"
+server_port: 80
+document_root: "{{ app_dir }}"
+website_name: "example.com"

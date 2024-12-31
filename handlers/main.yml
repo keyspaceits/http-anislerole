@@ -1,0 +1,11 @@
+---
+# handlers file for httpd-web
+- name: Reload HTTPD
+  service:
+    name: "{{ httpd_service }}"
+    state: reloaded
+
+- name:
+  service:
+    name: "{{ httpd_service }}"
+    state: restarted
